@@ -920,12 +920,15 @@
     .footer-bottom a { color: var(--secondary); }
 
     /* ===== SCROLL ANIMATIONS ===== */
+    /* デフォルトは表示状態。JSが有効な場合のみアニメーション適用 */
     .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .fade-up.visible {
+    .js-ready .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .js-ready .fade-up.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1613,6 +1616,8 @@
     function revealAll() {
       fadeEls.forEach(el => el.classList.add('visible'));
     }
+    // JSが動いている場合のみアニメーション用クラスを付与
+    document.body.classList.add('js-ready');
     if ('IntersectionObserver' in window) {
       try {
         const observer = new IntersectionObserver((entries) => {
@@ -1624,8 +1629,6 @@
           });
         }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
         fadeEls.forEach(el => observer.observe(el));
-        // 安全策: 2秒後に未表示の要素を強制表示
-        setTimeout(revealAll, 2000);
       } catch(e) {
         revealAll();
       }
