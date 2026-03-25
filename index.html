@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>大阪大学体育会ウインドサーフィン部</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --primary:   #0077B6;
+      --secondary: #00B4D8;
+      --accent:    #F77F00;
+      --white:     #FFFFFF;
+      --text:      #1A1A2E;
+      --bg-light:  #F0F8FF;
+      --nav-h:     64px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ===== NAVIGATION ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(0, 20, 50, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    #navbar.scrolled {
+      background: rgba(0, 20, 50, 0.97);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.5rem;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(0, 20, 50, 0.97);
+      padding: 1.5rem 5%;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg,
+          rgba(0,20,50,0.75) 0%,
+          rgba(0,119,182,0.55) 40%,
+          rgba(0,180,216,0.45) 65%,
+          rgba(247,127,0,0.35) 100%),
+        linear-gradient(135deg, #001430 0%, #0077B6 45%, #00B4D8 75%, #023E8A 100%);
+    }
+
+    /* animated wave layers */
+    .hero-wave {
+      position: absolute;
+      bottom: 0; left: -50%;
+      width: 200%; height: 200px;
+      border-radius: 50%;
+      opacity: 0.12;
+    }
+    .hw1 {
+      background: var(--secondary);
+      animation: waveMove 8s ease-in-out infinite;
+    }
+    .hw2 {
+      background: var(--primary);
+      height: 160px;
+      animation: waveMove 11s ease-in-out infinite reverse;
+      opacity: 0.1;
+    }
+    .hw3 {
+      background: var(--white);
+      height: 120px;
+      animation: waveMove 14s ease-in-out infinite;
+      opacity: 0.07;
+    }
+    @keyframes waveMove {
+      0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+      50% { transform: translateX(3%) translateY(-20px) rotate(2deg); }
+    }
+
+    /* sail decoration */
+    .hero-sail {
+      position: absolute;
+      right: 8%;
+      bottom: 10%;
+      width: min(280px, 40vw);
+      opacity: 0.18;
+      animation: sailSway 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes sailSway {
+      0%, 100% { transform: rotate(-3deg) translateY(0); }
+      50% { transform: rotate(3deg) translateY(-15px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 1.5rem;
+      padding-top: var(--nav-h);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0.35rem 1.2rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s ease both;
+    }
+    .hero-title {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      animation: fadeDown 0.9s 0.15s ease both;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 0.75rem;
+      animation: fadeDown 0.9s 0.25s ease both;
+      font-weight: 700;
+    }
+    .hero-desc {
+      font-size: clamp(0.88rem, 1.8vw, 1.05rem);
+      color: rgba(255,255,255,0.72);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      animation: fadeDown 0.9s 0.35s ease both;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeDown 0.9s 0.45s ease both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.7);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeIn 1s 1s both;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.3);
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ===== SECTION BASE ===== */
+    section {
+      padding: 6rem 5%;
+    }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 0.9rem;
+      letter-spacing: 5px;
+      color: var(--secondary);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ===== STATS BAR ===== */
+    #stats {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 3rem 5%;
+    }
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stat-item { color: var(--white); }
+    .stat-num {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      display: block;
+    }
+    .stat-num .unit {
+      font-size: 0.5em;
+      vertical-align: super;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 0.25rem;
+    }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-text p {
+      line-height: 1.9;
+      color: #444;
+      margin-bottom: 1.2rem;
+      font-size: 0.97rem;
+    }
+    .about-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .about-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .about-info-item .icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .about-info-item strong { display: block; font-weight: 700; color: var(--primary); }
+    .about-visual {
+      position: relative;
+    }
+    .about-card-bg {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      padding: 2.5rem;
+      color: var(--white);
+      box-shadow: 0 20px 60px rgba(0,119,182,0.3);
+    }
+    .about-card-bg h3 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+    .award-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .award-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+    .award-icon {
+      flex-shrink: 0;
+      background: var(--accent);
+      border-radius: 50%;
+      width: 28px; height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+    .award-item p { font-size: 0.9rem; line-height: 1.5; opacity: 0.93; }
+
+    /* ===== ACTIVITIES ===== */
+    #activities { background: var(--bg-light); }
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .activity-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .activity-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .activity-card-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb-practice { background: linear-gradient(135deg, #023E8A, #0077B6); }
+    .thumb-comp     { background: linear-gradient(135deg, #0077B6, #00B4D8); }
+    .thumb-tour     { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
+    .thumb-manager  { background: linear-gradient(135deg, #F77F00, #FCBF49); }
+    .thumb-team     { background: linear-gradient(135deg, #0077B6, #F77F00); }
+    .thumb-meet     { background: linear-gradient(135deg, #023E8A, #00B4D8); }
+    .activity-card-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .activity-card-body h3 {
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .activity-card-body p {
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* ===== FEATURES ===== */
+    #features { background: var(--white); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .feature-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .feature-item:hover {
+      border-color: var(--secondary);
+      background: var(--bg-light);
+    }
+    .feature-num {
+      flex-shrink: 0;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--secondary);
+      opacity: 0.5;
+      width: 2.5rem;
+      text-align: center;
+    }
+    .feature-text h3 {
+      font-weight: 900;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--primary);
+    }
+    .feature-text p {
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* ===== ACCESS ===== */
+    #access { background: var(--bg-light); }
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .access-map-placeholder {
+      background: linear-gradient(135deg, #e8f4fd, #cce8f4);
+      border-radius: 16px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-size: 3rem;
+      color: var(--primary);
+      border: 2px dashed var(--secondary);
+    }
+    .access-map-placeholder p {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .access-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .access-info-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .access-info-card .icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .access-info-card strong { display: block; font-weight: 700; font-size: 0.8rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
+    .access-info-card p { font-size: 0.93rem; color: var(--text); line-height: 1.6; }
+
+    /* ===== JOIN ===== */
+    #join {
+      background: linear-gradient(160deg, #001430 0%, #0077B6 60%, #00B4D8 100%);
+      color: var(--white);
+    }
+    #join .section-label { color: var(--accent); }
+    #join .section-title { color: var(--white); }
+    #join .section-divider { background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.3)); }
+    .join-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .join-message {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 2rem;
+    }
+    .join-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .join-step {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .join-step-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+    .join-step p { font-size: 0.93rem; color: rgba(255,255,255,0.9); }
+    .join-contact {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .join-contact h3 {
+      font-weight: 900;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .icon-fb { background: #1877F2; }
+    .icon-blog { background: var(--primary); }
+    .contact-item p { font-size: 0.9rem; color: rgba(255,255,255,0.88); line-height: 1.5; }
+    .contact-item a { color: var(--secondary); font-weight: 700; }
+    .contact-item a:hover { color: var(--accent); }
+    .faq-section { margin-top: 1.5rem; }
+    .faq-section h3 {
+      font-weight: 900;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 0;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      gap: 1rem;
+    }
+    .faq-q .arrow {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      transition: transform 0.25s, background 0.25s;
+    }
+    .faq-item.open .faq-q .arrow { transform: rotate(180deg); background: var(--accent); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s;
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.72);
+    }
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding-bottom: 0.85rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #020d1a;
+      color: rgba(255,255,255,0.6);
+      padding: 3rem 5% 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand .logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand .logo span { color: var(--accent); }
+    .footer-brand p {
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+    .footer-links h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .footer-links a {
+      display: block;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.4rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--secondary); }
+    .footer-socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .social-btn {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: transform 0.2s, opacity 0.2s;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      text-decoration: none;
+    }
+    .social-btn:hover { transform: translateY(-3px); opacity: 1; background: var(--primary); }
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.78rem;
+    }
+    .footer-bottom a { color: var(--secondary); }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+    .fade-up.delay-6 { transition-delay: 0.6s; }
+
+    /* ===== KEYFRAMES ===== */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .activities-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+      .access-grid { grid-template-columns: 1fr; }
+      .join-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+    }
+    @media (max-width: 580px) {
+      section { padding: 4rem 5%; }
+      .activities-grid { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; align-items: center; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-logo">OSAKA<span>WIND</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#access">Access</a></li>
+      <li><a href="#join">Join Us</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#activities" class="mobile-link">Activities</a>
+    <a href="#features" class="mobile-link">Features</a>
+    <a href="#access" class="mobile-link">Access</a>
+    <a href="#join" class="mobile-link">Join Us</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-wave hw1"></div>
+    <div class="hero-wave hw2"></div>
+    <div class="hero-wave hw3"></div>
+    <!-- SVG sail decoration -->
+    <svg class="hero-sail" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 380 L100 20 L10 340 Z" fill="white"/>
+      <path d="M100 380 L100 20 L190 280 Z" fill="#F77F00" opacity="0.8"/>
+      <rect x="97" y="10" width="6" height="375" fill="rgba(255,255,255,0.6)" rx="3"/>
+    </svg>
+    <div class="hero-content">
+      <div class="hero-badge">大阪大学体育会 公認クラブ</div>
+      <h1 class="hero-title">
+        風を感じろ。<br>
+        <span class="accent">速さを知れ。</span>
+      </h1>
+      <p class="hero-sub">大阪大学体育会ウインドサーフィン部</p>
+      <p class="hero-desc">
+        未経験者大歓迎。甲子園浜から始まる、最高のマリンライフ。<br>
+        体感速度100kmを超えるスリルは、ここでしか味わえない。
+      </p>
+      <div class="hero-cta">
+        <a href="#join" class="btn btn-primary">&#128293; 新入部員募集中</a>
+        <a href="#about" class="btn btn-outline">&#9654; 部について知る</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <span class="stat-num">14<span class="unit">年</span></span>
+        <div class="stat-label">創部からの歴史</div>
+      </div>
+      <div class="stat-item fade-up delay-1">
+        <span class="stat-num">2<span class="unit">回</span></span>
+        <div class="stat-label">週あたりの定期練習</div>
+      </div>
+      <div class="stat-item fade-up delay-2">
+        <span class="stat-num">100<span class="unit">km</span></span>
+        <div class="stat-label">超の体感スピード</div>
+      </div>
+      <div class="stat-item fade-up delay-3">
+        <span class="stat-num">3<span class="unit">位</span></span>
+        <div class="stat-label">全日本学生選手権 団体</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <p class="section-label">About</p>
+          <h2 class="section-title">部について</h2>
+          <div class="section-divider"></div>
+          <p>
+            大阪大学体育会ウインドサーフィン部へようこそ。
+            私たちはボードに帆（セイル）を装着し、風の力だけで海面を駆け抜けるレース競技「ウインドサーフィン」に情熱を注ぐ学生チームです。
+          </p>
+          <p>
+            風の強い日には体感速度100kmを超えるスリルは、他のスポーツでは味わえない特別な体験。
+            メンバーのほぼ全員が大学入学後にウインドサーフィンをスタートしており、未経験者でも安心して始められます。
+          </p>
+          <p>
+            JUBF（日本学生ボードセーリング連盟）に加盟する大阪大学体育会公認クラブとして、インカレ制覇を目標に日々鍛錬しています。
+            少人数だからこそ生まれる強いチームワークと、ここでしか作れない青春の記憶が待っています。
+          </p>
+          <ul class="about-info-list">
+            <li class="about-info-item">
+              <div class="icon">&#127944;</div>
+              <div><strong>練習日</strong>毎週土曜・日曜（週2回定期練習）</div>
+            </li>
+            <li class="about-info-item">
+              <div class="icon">&#128205;</div>
+              <div><strong>練習場所</strong>兵庫県西宮市 甲子園浜</div>
+            </li>
+            <li class="about-info-item">
+              <div class="icon">&#127894;</div>
+              <div><strong>所属連盟</strong>JUBF（日本学生ボードセーリング連盟）</div>
+            </li>
+            <li class="about-info-item">
+              <div class="icon">&#128101;</div>
+              <div><strong>部員数</strong>約15名（プレイヤー・マネージャー）</div>
+            </li>
+          </ul>
+        </div>
+        <div class="about-visual fade-up delay-2">
+          <div class="about-card-bg">
+            <h3>&#127942; 主な実績</h3>
+            <ul class="award-list">
+              <li class="award-item">
+                <div class="award-icon">&#129351;</div>
+                <p>全日本学生ボードセーリング選手権 大学対抗戦<br><strong>2年連続入賞（2020年度3位、2021年度4位）</strong></p>
+              </li>
+              <li class="award-item">
+                <div class="award-icon">&#127894;</div>
+                <p>関西選手権<br><strong>個人優勝・チーム上位入賞</strong></p>
+              </li>
+              <li class="award-item">
+                <div class="award-icon">&#127891;</div>
+                <p>令和3年度 体育会六賞<br><strong>「赤堀賞」受賞</strong></p>
+              </li>
+              <li class="award-item">
+                <div class="award-icon">&#127891;</div>
+                <p>第22回 課外活動総長賞<br><strong>「特別賞」受賞</strong></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section id="activities">
+    <div class="section-inner">
+      <p class="section-label fade-up">Activities</p>
+      <h2 class="section-title fade-up">活動内容</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="activities-grid">
+        <div class="activity-card fade-up">
+          <div class="activity-card-thumb thumb-practice">&#127940;</div>
+          <div class="activity-card-body">
+            <h3>定期練習</h3>
+            <p>毎週土日、甲子園浜で実施。風と波を体で感じながら、技術を磨きます。神戸大学との合同練習もあり、仲間と切磋琢磨できる環境です。</p>
+          </div>
+        </div>
+        <div class="activity-card fade-up delay-1">
+          <div class="activity-card-thumb thumb-comp">&#127942;</div>
+          <div class="activity-card-body">
+            <h3>大会・インカレ</h3>
+            <p>関西大会からスタートし、全国大会（インカレ）を目指します。津久井浜（神奈川）など各地で開催される大会に積極参加しています。</p>
+          </div>
+        </div>
+        <div class="activity-card fade-up delay-2">
+          <div class="activity-card-thumb thumb-tour">&#9992;</div>
+          <div class="activity-card-body">
+            <h3>遠征</h3>
+            <p>琵琶湖・浜名湖・津久井浜、そして憧れの沖縄インカレへ。遠征先での練習と大会は、部員の絆を深める最高の機会です。</p>
+          </div>
+        </div>
+        <div class="activity-card fade-up delay-3">
+          <div class="activity-card-thumb thumb-manager">&#9875;</div>
+          <div class="activity-card-body">
+            <h3>マネージャーの活躍</h3>
+            <p>マネージャーは船舶免許を取得し、レース運営やプレイヤーのレスキューを担当。チームに不可欠な重要ポジションです。</p>
+          </div>
+        </div>
+        <div class="activity-card fade-up delay-4">
+          <div class="activity-card-thumb thumb-team">&#127942;</div>
+          <div class="activity-card-body">
+            <h3>自主練・個人強化</h3>
+            <p>平日は各自の空き時間を活用した自主練習も実施。個人技術の向上を通じて、チーム全体の底上げを図ります。</p>
+          </div>
+        </div>
+        <div class="activity-card fade-up delay-5">
+          <div class="activity-card-thumb thumb-meet">&#127979;</div>
+          <div class="activity-card-body">
+            <h3>合同練習・交流</h3>
+            <p>甲子園浜では神戸大学・関西学院大学・甲南大学・武庫川女子大学とも交流。広い仲間のネットワークが生まれます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-inner">
+      <p class="section-label fade-up">Features</p>
+      <h2 class="section-title fade-up">入部のメリット</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="features-grid">
+        <div class="feature-item fade-up">
+          <div class="feature-num">01</div>
+          <div class="feature-text">
+            <h3>完全初心者歓迎</h3>
+            <p>部員のほぼ全員が大学入学後にスタート。経験・スキル不問。ゼロから一緒に成長できる環境が整っています。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-1">
+          <div class="feature-num">02</div>
+          <div class="feature-text">
+            <h3>日本一を目指せる</h3>
+            <p>インカレ・全国大会を目標とする本格的な体育会環境。初心者でも努力次第で全国の舞台に立てます。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-2">
+          <div class="feature-num">03</div>
+          <div class="feature-text">
+            <h3>体感速度100kmのスリル</h3>
+            <p>他のスポーツでは決して味わえない非日常体験。ウインドサーフィンでしか得られない感覚がここにあります。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-3">
+          <div class="feature-num">04</div>
+          <div class="feature-text">
+            <h3>全国遠征の機会</h3>
+            <p>琵琶湖・神奈川・静岡・沖縄など、全国各地への遠征で充実した大学生活を送れます。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-4">
+          <div class="feature-num">05</div>
+          <div class="feature-text">
+            <h3>少人数ならではの絆</h3>
+            <p>約15名の少人数チームで、部員同士の距離が近い。ここでしか作れない仲間との思い出が生まれます。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-5">
+          <div class="feature-num">06</div>
+          <div class="feature-text">
+            <h3>大学公認・受賞歴あり</h3>
+            <p>大阪大学体育会公認クラブ。総長賞・体育会六賞など大学からも高く評価されているクラブです。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-1">
+          <div class="feature-num">07</div>
+          <div class="feature-text">
+            <h3>マネージャーも大活躍</h3>
+            <p>船舶免許取得・レース運営など、プレイヤー以外も重要な役割を担えます。競技経験不問で大歓迎。</p>
+          </div>
+        </div>
+        <div class="feature-item fade-up delay-2">
+          <div class="feature-num">08</div>
+          <div class="feature-text">
+            <h3>レディースも活躍できる</h3>
+            <p>女性部員もメンズと同等に競技できる環境が整っています。性別問わず本気で取り組めるチームです。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section id="access">
+    <div class="section-inner">
+      <p class="section-label fade-up">Access</p>
+      <h2 class="section-title fade-up">練習場所</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="access-grid">
+        <div class="access-map-placeholder fade-up">
+          <span>&#127946;</span>
+          <p>兵庫県西宮市 甲子園浜</p>
+        </div>
+        <div class="access-info-list">
+          <div class="access-info-card fade-up delay-1">
+            <div class="icon">&#127940;</div>
+            <div>
+              <strong>Main Spot</strong>
+              <p><b>甲子園浜</b>（兵庫県西宮市）<br>所属ショップ：Sea You ウインドサーフィンショップ</p>
+            </div>
+          </div>
+          <div class="access-info-card fade-up delay-2">
+            <div class="icon">&#128344;</div>
+            <div>
+              <strong>Practice Schedule</strong>
+              <p>毎週<b>土曜・日曜</b>（定期練習）<br>平日は各自自主練習</p>
+            </div>
+          </div>
+          <div class="access-info-card fade-up delay-3">
+            <div class="icon">&#127757;</div>
+            <div>
+              <strong>Expedition Spots</strong>
+              <p>琵琶湖（滋賀）/ 津久井浜（神奈川）<br>浜名湖（静岡）/ 沖縄（全国インカレ個人）</p>
+            </div>
+          </div>
+          <div class="access-info-card fade-up delay-4">
+            <div class="icon">&#128101;</div>
+            <div>
+              <strong>Joint Practice</strong>
+              <p>神戸大学・関西学院大学・甲南大学・武庫川女子大学と同浜で活動</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section id="join">
+    <div class="section-inner">
+      <p class="section-label fade-up">Join Us</p>
+      <h2 class="section-title fade-up">新入部員募集</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="join-grid">
+        <div class="fade-up">
+          <p class="join-message">
+            ウインドサーフィンを知らなくても、泳げなくても大丈夫。<br>
+            部員のほぼ全員が大学から始めた初心者でした。<br><br>
+            プレイヤーとして海を走るもよし、マネージャーとして船舶免許を取得してチームを支えるもよし。<br>
+            あなたの居場所が、甲子園浜にあります。
+          </p>
+          <p style="font-weight:700; font-size:0.9rem; color:rgba(255,255,255,0.6); text-transform:uppercase; letter-spacing:2px; margin-bottom:1rem;">入部の流れ</p>
+          <div class="join-steps">
+            <div class="join-step">
+              <div class="join-step-num">1</div>
+              <p>InstagramのDMまたはSNSで連絡</p>
+            </div>
+            <div class="join-step">
+              <div class="join-step-num">2</div>
+              <p>練習見学・体験参加（無料）</p>
+            </div>
+            <div class="join-step">
+              <div class="join-step-num">3</div>
+              <p>入部申し込み・大阪大学体育会への登録</p>
+            </div>
+            <div class="join-step">
+              <div class="join-step-num">4</div>
+              <p>練習スタート！甲子園浜で会いましょう&#127754;</p>
+            </div>
+          </div>
+          <!-- FAQ -->
+          <div class="faq-section fade-up delay-2">
+            <h3>FAQ</h3>
+            <div class="faq-item">
+              <div class="faq-q">経験なしでも本当に大丈夫？<div class="arrow">&#9660;</div></div>
+              <div class="faq-a">はい、大丈夫です！入部した部員の99.9%が大学からウインドサーフィンを始めています。基礎からしっかり教えます。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">泳げないと難しい？<div class="arrow">&#9660;</div></div>
+              <div class="faq-a">泳力は問いません。練習中は常にライフジャケットを着用し、マネージャーがレスキューボートで待機しています。安全第一の環境です。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">道具や費用はどのくらいかかる？<div class="arrow">&#9660;</div></div>
+              <div class="faq-a">ボードやセイルなど道具代・遠征費・施設費がかかります。詳しくは見学時にお気軽にご相談ください。大阪大学未来基金の支援対象にもなっています。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">文系でも入れる？<div class="arrow">&#9660;</div></div>
+              <div class="faq-a">もちろんです！学部・学科は問いません。大阪大学の学生であれば誰でも歓迎します。</div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up delay-2">
+          <div class="join-contact">
+            <h3>&#128172; お問い合わせ</h3>
+            <div class="contact-item">
+              <div class="contact-icon icon-ig">&#128247;</div>
+              <div>
+                <p><b>Instagram</b><br>
+                <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener">@osakawind87</a><br>
+                DMでのお問い合わせが一番スムーズです！</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon icon-fb">f</div>
+              <div>
+                <p><b>Facebook</b><br>
+                <a href="https://www.facebook.com/osakawindsurfingteam/" target="_blank" rel="noopener">大阪大学体育会ウインドサーフィン部</a></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon icon-blog">&#128218;</div>
+              <div>
+                <p><b>公式ブログ</b><br>
+                <a href="https://ameblo.jp/osakawind87/" target="_blank" rel="noopener">ameblo.jp/osakawind87</a><br>
+                活動の様子を随時更新中！</p>
+              </div>
+            </div>
+          </div>
+          <!-- 新歓メッセージカード -->
+          <div style="margin-top:1.5rem; background:rgba(247,127,0,0.15); border:1px solid rgba(247,127,0,0.4); border-radius:16px; padding:1.5rem;">
+            <p style="font-size:1.1rem; font-weight:900; color:var(--accent); margin-bottom:0.75rem;">&#127800; 新歓シーズン開催中！</p>
+            <p style="font-size:0.9rem; color:rgba(255,255,255,0.82); line-height:1.8;">
+              春（3〜4月）は新入生歓迎イベントを多数開催予定。<br>
+              まずは気軽に見学・体験に来てください！<br>
+              最新情報はInstagramをチェック！
+            </p>
+            <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:1rem; display:inline-flex; font-size:0.88rem;">
+              &#128247; Instagramを見る
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">OSAKA<span>WIND</span></div>
+          <p>
+            大阪大学体育会ウインドサーフィン部<br>
+            兵庫県西宮市 甲子園浜を拠点に活動中<br>
+            JUBF（日本学生ボードセーリング連盟）加盟
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <a href="#about">About</a>
+          <a href="#activities">Activities</a>
+          <a href="#features">Features</a>
+          <a href="#access">Access</a>
+          <a href="#join">Join Us</a>
+        </div>
+        <div class="footer-links">
+          <h4>Links</h4>
+          <a href="https://osakawind87.amebaownd.com/" target="_blank" rel="noopener">公式サイト</a>
+          <a href="https://ameblo.jp/osakawind87/" target="_blank" rel="noopener">公式ブログ</a>
+          <a href="https://www.jubf-info.com/" target="_blank" rel="noopener">JUBF</a>
+          <a href="https://www.miraikikin.osaka-u.ac.jp/project/windsurfing" target="_blank" rel="noopener">大阪大学未来基金</a>
+        </div>
+        <div>
+          <h4 style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:2px; text-transform:uppercase; margin-bottom:0.75rem;">Social</h4>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram" title="Instagram">&#128247;</a>
+            <a href="https://www.facebook.com/osakawindsurfingteam/" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook" title="Facebook">f</a>
+            <a href="https://ameblo.jp/osakawind87/" target="_blank" rel="noopener" class="social-btn" aria-label="Blog" title="Blog">B</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 大阪大学体育会ウインドサーフィン部. All Rights Reserved. |
+          <a href="https://www.osaka-u.ac.jp/" target="_blank" rel="noopener">大阪大学</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== NAVBAR SCROLL =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // ===== HAMBURGER =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+
+    // ===== SCROLL ANIMATION (IntersectionObserver) =====
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ===== FAQ ACCORDION =====
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ===== COUNTUP ANIMATION =====
+    function countUp(el, target, duration, suffix) {
+      let start = 0;
+      const step = target / (duration / 16);
+      const tick = () => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.floor(start) + suffix;
+        if (start < target) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+    const statsObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const nums = entry.target.querySelectorAll('.stat-num');
+          const targets = [14, 2, 100, 3];
+          const suffixes = ['年', '回', 'km', '位'];
+          nums.forEach((num, i) => {
+            num.textContent = '0' + suffixes[i];
+            countUp(num, targets[i], 1200, suffixes[i]);
+          });
+          statsObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const statsSection = document.querySelector('#stats .stats-grid');
+    if (statsSection) statsObs.observe(statsSection);
+  </script>
+</body>
+</html>
