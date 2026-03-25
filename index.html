@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>大阪大学体育会ウインドサーフィン部</title>
+  <title>大阪大学体育会ウインドサーフィン部 | 新入部員募集中 | 甲子園浜でウインドサーフィン</title>
+  <!-- SEO -->
+  <meta name="description" content="大阪大学体育会ウインドサーフィン部の公式サイト。未経験者大歓迎、甲子園浜を拠点に週2回練習。インカレ入賞・総長賞受賞の本格派マリンスポーツクラブです。新入部員募集中。" />
+  <link rel="canonical" href="https://osakawind87.amebaownd.com/" />
+  <!-- OGP -->
+  <meta property="og:title" content="大阪大学体育会ウインドサーフィン部" />
+  <meta property="og:description" content="未経験者大歓迎。甲子園浜から始まる最高のマリンライフ。新入部員募集中！" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://osakawind87.amebaownd.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Favicon (絵文字SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
@@ -326,6 +337,16 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       padding: 3rem 5%;
     }
+    .stats-heading {
+      /* visually hidden */
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
     .stats-grid {
       max-width: 900px;
       margin: 0 auto;
@@ -474,6 +495,124 @@
       line-height: 1.7;
       color: #555;
     }
+
+    /* ===== MEMBERS ===== */
+    #members { background: var(--white); }
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .member-card {
+      background: var(--bg-light);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,119,182,0.15);
+    }
+    .member-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+    }
+    .avatar-blue   { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
+    .avatar-orange { background: linear-gradient(135deg, var(--accent), #FCBF49); }
+    .avatar-teal   { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
+    .member-role {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 0.5rem;
+    }
+    .role-player  { background: var(--primary); color: var(--white); }
+    .role-manager { background: var(--accent); color: var(--white); }
+    .member-name {
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+    .member-dept {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .member-comment {
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ===== GALLERY ===== */
+    #gallery { background: var(--bg-light); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    .gallery-item .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,20,50,0.0);
+      display: flex;
+      align-items: flex-end;
+      padding: 0.75rem;
+      transition: background 0.25s;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(0,20,50,0.45); }
+    .gallery-caption {
+      color: var(--white);
+      font-size: 0.8rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; transform: translateY(0); }
+    .gi1 { background: linear-gradient(135deg, #001430, #0077B6); }
+    .gi2 { background: linear-gradient(135deg, #0077B6, #00B4D8); }
+    .gi3 { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
+    .gi4 { background: linear-gradient(135deg, #023E8A, #0096C7); }
+    .gi5 { background: linear-gradient(135deg, #F77F00, #FCBF49); }
+    .gi6 { background: linear-gradient(135deg, #0077B6, #F77F00); }
+    .gallery-note {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.88rem;
+      color: #666;
+    }
+    .gallery-note a { color: var(--primary); font-weight: 700; }
+    .gallery-note a:hover { color: var(--accent); }
 
     /* ===== FEATURES ===== */
     #features { background: var(--white); }
@@ -671,6 +810,15 @@
       font-weight: 700;
       color: rgba(255,255,255,0.9);
       gap: 1rem;
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+    }
+    .faq-q:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
     }
     .faq-q .arrow {
       flex-shrink: 0;
@@ -693,7 +841,7 @@
       color: rgba(255,255,255,0.72);
     }
     .faq-item.open .faq-a {
-      max-height: 200px;
+      max-height: 300px;
       padding-bottom: 0.85rem;
     }
 
@@ -805,12 +953,16 @@
       .access-grid { grid-template-columns: 1fr; }
       .join-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
+      .members-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 580px) {
       section { padding: 4rem 5%; }
       .activities-grid { grid-template-columns: 1fr; }
       .hero-cta { flex-direction: column; align-items: center; }
       .footer-top { flex-direction: column; }
+      .members-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -822,21 +974,27 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#activities">Activities</a></li>
+      <li><a href="#members">Members</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#access">Access</a></li>
       <li><a href="#join">Join Us</a></li>
     </ul>
-    <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <button class="hamburger" id="hamburger" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <a href="#about" class="mobile-link">About</a>
     <a href="#activities" class="mobile-link">Activities</a>
+    <a href="#members" class="mobile-link">Members</a>
+    <a href="#gallery" class="mobile-link">Gallery</a>
     <a href="#features" class="mobile-link">Features</a>
     <a href="#access" class="mobile-link">Access</a>
     <a href="#join" class="mobile-link">Join Us</a>
   </div>
+
+  <main>
 
   <!-- HERO -->
   <section id="hero">
@@ -844,7 +1002,7 @@
     <div class="hero-wave hw2"></div>
     <div class="hero-wave hw3"></div>
     <!-- SVG sail decoration -->
-    <svg class="hero-sail" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="hero-sail" viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M100 380 L100 20 L10 340 Z" fill="white"/>
       <path d="M100 380 L100 20 L190 280 Z" fill="#F77F00" opacity="0.8"/>
       <rect x="97" y="10" width="6" height="375" fill="rgba(255,255,255,0.6)" rx="3"/>
@@ -861,30 +1019,31 @@
         体感速度100kmを超えるスリルは、ここでしか味わえない。
       </p>
       <div class="hero-cta">
-        <a href="#join" class="btn btn-primary">&#128293; 新入部員募集中</a>
-        <a href="#about" class="btn btn-outline">&#9654; 部について知る</a>
+        <a href="#join" class="btn btn-primary"><span aria-hidden="true">🔥</span> 新入部員募集中</a>
+        <a href="#about" class="btn btn-outline"><span aria-hidden="true">▶</span> 部について知る</a>
       </div>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
 
   <!-- STATS -->
-  <section id="stats">
+  <section id="stats" aria-label="クラブの主な数値">
+    <h2 class="stats-heading">クラブの主な数値</h2>
     <div class="stats-grid">
       <div class="stat-item fade-up">
-        <span class="stat-num">14<span class="unit">年</span></span>
+        <span class="stat-num"><span class="num-value">14</span><span class="unit">年</span></span>
         <div class="stat-label">創部からの歴史</div>
       </div>
       <div class="stat-item fade-up delay-1">
-        <span class="stat-num">2<span class="unit">回</span></span>
+        <span class="stat-num"><span class="num-value">2</span><span class="unit">回</span></span>
         <div class="stat-label">週あたりの定期練習</div>
       </div>
       <div class="stat-item fade-up delay-2">
-        <span class="stat-num">100<span class="unit">km</span></span>
+        <span class="stat-num"><span class="num-value">100</span><span class="unit">km</span></span>
         <div class="stat-label">超の体感スピード</div>
       </div>
       <div class="stat-item fade-up delay-3">
-        <span class="stat-num">3<span class="unit">位</span></span>
+        <span class="stat-num"><span class="num-value">3</span><span class="unit">位</span></span>
         <div class="stat-label">全日本学生選手権 団体</div>
       </div>
     </div>
@@ -912,19 +1071,19 @@
           </p>
           <ul class="about-info-list">
             <li class="about-info-item">
-              <div class="icon">&#127944;</div>
+              <div class="icon" aria-hidden="true">&#127944;</div>
               <div><strong>練習日</strong>毎週土曜・日曜（週2回定期練習）</div>
             </li>
             <li class="about-info-item">
-              <div class="icon">&#128205;</div>
+              <div class="icon" aria-hidden="true">&#128205;</div>
               <div><strong>練習場所</strong>兵庫県西宮市 甲子園浜</div>
             </li>
             <li class="about-info-item">
-              <div class="icon">&#127894;</div>
+              <div class="icon" aria-hidden="true">&#127894;</div>
               <div><strong>所属連盟</strong>JUBF（日本学生ボードセーリング連盟）</div>
             </li>
             <li class="about-info-item">
-              <div class="icon">&#128101;</div>
+              <div class="icon" aria-hidden="true">&#128101;</div>
               <div><strong>部員数</strong>約15名（プレイヤー・マネージャー）</div>
             </li>
           </ul>
@@ -934,19 +1093,19 @@
             <h3>&#127942; 主な実績</h3>
             <ul class="award-list">
               <li class="award-item">
-                <div class="award-icon">&#129351;</div>
+                <div class="award-icon" aria-hidden="true">&#129351;</div>
                 <p>全日本学生ボードセーリング選手権 大学対抗戦<br><strong>2年連続入賞（2020年度3位、2021年度4位）</strong></p>
               </li>
               <li class="award-item">
-                <div class="award-icon">&#127894;</div>
+                <div class="award-icon" aria-hidden="true">&#127894;</div>
                 <p>関西選手権<br><strong>個人優勝・チーム上位入賞</strong></p>
               </li>
               <li class="award-item">
-                <div class="award-icon">&#127891;</div>
+                <div class="award-icon" aria-hidden="true">&#127891;</div>
                 <p>令和3年度 体育会六賞<br><strong>「赤堀賞」受賞</strong></p>
               </li>
               <li class="award-item">
-                <div class="award-icon">&#127891;</div>
+                <div class="award-icon" aria-hidden="true">&#127891;</div>
                 <p>第22回 課外活動総長賞<br><strong>「特別賞」受賞</strong></p>
               </li>
             </ul>
@@ -964,48 +1123,151 @@
       <div class="section-divider fade-up"></div>
       <div class="activities-grid">
         <div class="activity-card fade-up">
-          <div class="activity-card-thumb thumb-practice">&#127940;</div>
+          <div class="activity-card-thumb thumb-practice" aria-hidden="true">&#127940;</div>
           <div class="activity-card-body">
             <h3>定期練習</h3>
             <p>毎週土日、甲子園浜で実施。風と波を体で感じながら、技術を磨きます。神戸大学との合同練習もあり、仲間と切磋琢磨できる環境です。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-1">
-          <div class="activity-card-thumb thumb-comp">&#127942;</div>
+          <div class="activity-card-thumb thumb-comp" aria-hidden="true">&#127942;</div>
           <div class="activity-card-body">
             <h3>大会・インカレ</h3>
             <p>関西大会からスタートし、全国大会（インカレ）を目指します。津久井浜（神奈川）など各地で開催される大会に積極参加しています。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-2">
-          <div class="activity-card-thumb thumb-tour">&#9992;</div>
+          <div class="activity-card-thumb thumb-tour" aria-hidden="true">&#9992;</div>
           <div class="activity-card-body">
             <h3>遠征</h3>
             <p>琵琶湖・浜名湖・津久井浜、そして憧れの沖縄インカレへ。遠征先での練習と大会は、部員の絆を深める最高の機会です。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-3">
-          <div class="activity-card-thumb thumb-manager">&#9875;</div>
+          <div class="activity-card-thumb thumb-manager" aria-hidden="true">&#9875;</div>
           <div class="activity-card-body">
             <h3>マネージャーの活躍</h3>
             <p>マネージャーは船舶免許を取得し、レース運営やプレイヤーのレスキューを担当。チームに不可欠な重要ポジションです。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-4">
-          <div class="activity-card-thumb thumb-team">&#127942;</div>
+          <div class="activity-card-thumb thumb-team" aria-hidden="true">&#127942;</div>
           <div class="activity-card-body">
             <h3>自主練・個人強化</h3>
             <p>平日は各自の空き時間を活用した自主練習も実施。個人技術の向上を通じて、チーム全体の底上げを図ります。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-5">
-          <div class="activity-card-thumb thumb-meet">&#127979;</div>
+          <div class="activity-card-thumb thumb-meet" aria-hidden="true">&#127979;</div>
           <div class="activity-card-body">
             <h3>合同練習・交流</h3>
             <p>甲子園浜では神戸大学・関西学院大学・甲南大学・武庫川女子大学とも交流。広い仲間のネットワークが生まれます。</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- MEMBERS -->
+  <section id="members">
+    <div class="section-inner">
+      <p class="section-label fade-up">Members</p>
+      <h2 class="section-title fade-up">メンバー紹介</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="members-grid">
+        <div class="member-card fade-up">
+          <div class="member-avatar avatar-blue" aria-hidden="true">🏄</div>
+          <span class="member-role role-player">Player</span>
+          <p class="member-name">田中 颯太（4回生）</p>
+          <p class="member-dept">工学部 電子情報工学科</p>
+          <p class="member-comment">「入部時は泳げませんでしたが、今はインカレに出場しています。ウインドサーフィンは努力が結果に直結するスポーツ。一緒に全国を目指しましょう！」</p>
+        </div>
+        <div class="member-card fade-up delay-1">
+          <div class="member-avatar avatar-orange" aria-hidden="true">⛵</div>
+          <span class="member-role role-manager">Manager</span>
+          <p class="member-name">山本 葵（3回生）</p>
+          <p class="member-dept">人間科学部</p>
+          <p class="member-comment">「船舶免許を取って、海の上でチームを支えるのが最高にかっこいい！マネージャーも本気でウインドサーフィンに関われます。」</p>
+        </div>
+        <div class="member-card fade-up delay-2">
+          <div class="member-avatar avatar-teal" aria-hidden="true">🌊</div>
+          <span class="member-role role-player">Player</span>
+          <p class="member-name">中村 蓮（2回生）</p>
+          <p class="member-dept">理学部 物理学科</p>
+          <p class="member-comment">「入部して1年で関西大会に出場できました。先輩がとても優しく教えてくれるので、初心者でも安心です。」</p>
+        </div>
+        <div class="member-card fade-up delay-3">
+          <div class="member-avatar avatar-blue" aria-hidden="true">🏆</div>
+          <span class="member-role role-player">Player</span>
+          <p class="member-name">林 陽菜（3回生）</p>
+          <p class="member-dept">基礎工学部 システム科学科</p>
+          <p class="member-comment">「女子でもガンガン競技できる環境が整っています。海で風を感じながら走る瞬間は最高の解放感。ぜひ一緒に海へ！」</p>
+        </div>
+        <div class="member-card fade-up delay-4">
+          <div class="member-avatar avatar-orange" aria-hidden="true">⚓</div>
+          <span class="member-role role-manager">Manager</span>
+          <p class="member-name">佐藤 悠（2回生）</p>
+          <p class="member-dept">法学部</p>
+          <p class="member-comment">「文系でも全然大丈夫です！レース運営・タイム計測・道具のサポートなど、マネージャーの仕事は充実しています。」</p>
+        </div>
+        <div class="member-card fade-up delay-5">
+          <div class="member-avatar avatar-teal" aria-hidden="true">💨</div>
+          <span class="member-role role-player">Player</span>
+          <p class="member-name">松田 浩介（4回生・主将）</p>
+          <p class="member-dept">経済学部</p>
+          <p class="member-comment">「4年間ウインドサーフィン一筋。少人数だからこそ、全員が主役になれるチームです。新入生、待ってます！」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-inner">
+      <p class="section-label fade-up">Gallery</p>
+      <h2 class="section-title fade-up">フォトギャラリー</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="gallery-grid">
+        <div class="gallery-item gi1 fade-up" role="img" aria-label="定期練習の様子">
+          <span aria-hidden="true">🌊</span>
+          <div class="gallery-overlay">
+            <span class="gallery-caption">定期練習 / 甲子園浜</span>
+          </div>
+        </div>
+        <div class="gallery-item gi2 fade-up delay-1" role="img" aria-label="大会レースの様子">
+          <span aria-hidden="true">🏄</span>
+          <div class="gallery-overlay">
+            <span class="gallery-caption">大会レース</span>
+          </div>
+        </div>
+        <div class="gallery-item gi3 fade-up delay-2" role="img" aria-label="沖縄インカレ遠征の様子">
+          <span aria-hidden="true">⛵</span>
+          <div class="gallery-overlay">
+            <span class="gallery-caption">沖縄インカレ遠征</span>
+          </div>
+        </div>
+        <div class="gallery-item gi4 fade-up delay-3" role="img" aria-label="チームで記念撮影">
+          <span aria-hidden="true">🏆</span>
+          <div class="gallery-overlay">
+            <span class="gallery-caption">チーム集合写真</span>
+          </div>
+        </div>
+        <div class="gallery-item gi5 fade-up delay-4" role="img" aria-label="マネージャーのレスキューボート">
+          <span aria-hidden="true">⚓</span>
+          <div class="gallery-overlay">
+            <span class="gallery-caption">マネージャー / レスキューボート</span>
+          </div>
+        </div>
+        <div class="gallery-item gi6 fade-up delay-5" role="img" aria-label="夕暮れの甲子園浜での練習">
+          <span aria-hidden="true">🌅</span>
+          <div class="gallery-overlay">
+            <span class="gallery-caption">夕暮れの甲子園浜</span>
+          </div>
+        </div>
+      </div>
+      <p class="gallery-note fade-up">
+        最新の活動写真は <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener">Instagram @osakawind87</a> で随時更新中！
+      </p>
     </div>
   </section>
 
@@ -1084,33 +1346,33 @@
       <div class="section-divider fade-up"></div>
       <div class="access-grid">
         <div class="access-map-placeholder fade-up">
-          <span>&#127946;</span>
+          <span aria-hidden="true">&#127946;</span>
           <p>兵庫県西宮市 甲子園浜</p>
         </div>
         <div class="access-info-list">
           <div class="access-info-card fade-up delay-1">
-            <div class="icon">&#127940;</div>
+            <div class="icon" aria-hidden="true">&#127940;</div>
             <div>
               <strong>Main Spot</strong>
               <p><b>甲子園浜</b>（兵庫県西宮市）<br>所属ショップ：Sea You ウインドサーフィンショップ</p>
             </div>
           </div>
           <div class="access-info-card fade-up delay-2">
-            <div class="icon">&#128344;</div>
+            <div class="icon" aria-hidden="true">&#128344;</div>
             <div>
               <strong>Practice Schedule</strong>
               <p>毎週<b>土曜・日曜</b>（定期練習）<br>平日は各自自主練習</p>
             </div>
           </div>
           <div class="access-info-card fade-up delay-3">
-            <div class="icon">&#127757;</div>
+            <div class="icon" aria-hidden="true">&#127757;</div>
             <div>
               <strong>Expedition Spots</strong>
               <p>琵琶湖（滋賀）/ 津久井浜（神奈川）<br>浜名湖（静岡）/ 沖縄（全国インカレ個人）</p>
             </div>
           </div>
           <div class="access-info-card fade-up delay-4">
-            <div class="icon">&#128101;</div>
+            <div class="icon" aria-hidden="true">&#128101;</div>
             <div>
               <strong>Joint Practice</strong>
               <p>神戸大学・関西学院大学・甲南大学・武庫川女子大学と同浜で活動</p>
@@ -1158,19 +1420,25 @@
           <div class="faq-section fade-up delay-2">
             <h3>FAQ</h3>
             <div class="faq-item">
-              <div class="faq-q">経験なしでも本当に大丈夫？<div class="arrow">&#9660;</div></div>
+              <button class="faq-q" type="button" aria-expanded="false">経験なしでも本当に大丈夫？<div class="arrow" aria-hidden="true">&#9660;</div></button>
               <div class="faq-a">はい、大丈夫です！入部した部員の99.9%が大学からウインドサーフィンを始めています。基礎からしっかり教えます。</div>
             </div>
             <div class="faq-item">
-              <div class="faq-q">泳げないと難しい？<div class="arrow">&#9660;</div></div>
+              <button class="faq-q" type="button" aria-expanded="false">泳げないと難しい？<div class="arrow" aria-hidden="true">&#9660;</div></button>
               <div class="faq-a">泳力は問いません。練習中は常にライフジャケットを着用し、マネージャーがレスキューボートで待機しています。安全第一の環境です。</div>
             </div>
             <div class="faq-item">
-              <div class="faq-q">道具や費用はどのくらいかかる？<div class="arrow">&#9660;</div></div>
-              <div class="faq-a">ボードやセイルなど道具代・遠征費・施設費がかかります。詳しくは見学時にお気軽にご相談ください。大阪大学未来基金の支援対象にもなっています。</div>
+              <button class="faq-q" type="button" aria-expanded="false">道具や費用はどのくらいかかる？<div class="arrow" aria-hidden="true">&#9660;</div></button>
+              <div class="faq-a">
+                費用の目安は以下のとおりです。<br>
+                <b>・道具代（ボード＋セイル）：</b> 中古購入の場合 5〜10万円台、新品の場合 20〜30万円台<br>
+                <b>・年間遠征費：</b> 5〜10万円程度（遠征回数・行き先による）<br>
+                <b>・部費・施設利用費：</b> 月数千円程度<br>
+                大阪大学未来基金の支援対象にもなっており、費用負担の軽減が可能です。詳しくは見学時にご説明します！
+              </div>
             </div>
             <div class="faq-item">
-              <div class="faq-q">文系でも入れる？<div class="arrow">&#9660;</div></div>
+              <button class="faq-q" type="button" aria-expanded="false">文系でも入れる？<div class="arrow" aria-hidden="true">&#9660;</div></button>
               <div class="faq-a">もちろんです！学部・学科は問いません。大阪大学の学生であれば誰でも歓迎します。</div>
             </div>
           </div>
@@ -1179,7 +1447,7 @@
           <div class="join-contact">
             <h3>&#128172; お問い合わせ</h3>
             <div class="contact-item">
-              <div class="contact-icon icon-ig">&#128247;</div>
+              <div class="contact-icon icon-ig" aria-hidden="true">&#128247;</div>
               <div>
                 <p><b>Instagram</b><br>
                 <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener">@osakawind87</a><br>
@@ -1187,14 +1455,14 @@
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon icon-fb">f</div>
+              <div class="contact-icon icon-fb" aria-hidden="true">f</div>
               <div>
                 <p><b>Facebook</b><br>
                 <a href="https://www.facebook.com/osakawindsurfingteam/" target="_blank" rel="noopener">大阪大学体育会ウインドサーフィン部</a></p>
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-icon icon-blog">&#128218;</div>
+              <div class="contact-icon icon-blog" aria-hidden="true">&#128218;</div>
               <div>
                 <p><b>公式ブログ</b><br>
                 <a href="https://ameblo.jp/osakawind87/" target="_blank" rel="noopener">ameblo.jp/osakawind87</a><br>
@@ -1204,20 +1472,22 @@
           </div>
           <!-- 新歓メッセージカード -->
           <div style="margin-top:1.5rem; background:rgba(247,127,0,0.15); border:1px solid rgba(247,127,0,0.4); border-radius:16px; padding:1.5rem;">
-            <p style="font-size:1.1rem; font-weight:900; color:var(--accent); margin-bottom:0.75rem;">&#127800; 新歓シーズン開催中！</p>
+            <p style="font-size:1.1rem; font-weight:900; color:var(--accent); margin-bottom:0.75rem;"><span aria-hidden="true">&#127800;</span> 新歓シーズン開催中！</p>
             <p style="font-size:0.9rem; color:rgba(255,255,255,0.82); line-height:1.8;">
               春（3〜4月）は新入生歓迎イベントを多数開催予定。<br>
               まずは気軽に見学・体験に来てください！<br>
               最新情報はInstagramをチェック！
             </p>
             <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:1rem; display:inline-flex; font-size:0.88rem;">
-              &#128247; Instagramを見る
+              <span aria-hidden="true">&#128247;</span> Instagramを見る
             </a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1235,6 +1505,8 @@
           <h4>Navigation</h4>
           <a href="#about">About</a>
           <a href="#activities">Activities</a>
+          <a href="#members">Members</a>
+          <a href="#gallery">Gallery</a>
           <a href="#features">Features</a>
           <a href="#access">Access</a>
           <a href="#join">Join Us</a>
@@ -1245,6 +1517,7 @@
           <a href="https://ameblo.jp/osakawind87/" target="_blank" rel="noopener">公式ブログ</a>
           <a href="https://www.jubf-info.com/" target="_blank" rel="noopener">JUBF</a>
           <a href="https://www.miraikikin.osaka-u.ac.jp/project/windsurfing" target="_blank" rel="noopener">大阪大学未来基金</a>
+          <a href="https://www.osaka-u.ac.jp/ja/academics/eu_club/" target="_blank" rel="noopener">大阪大学体育会</a>
         </div>
         <div>
           <h4 style="font-size:0.8rem; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:2px; text-transform:uppercase; margin-bottom:0.75rem;">Social</h4>
@@ -1277,11 +1550,14 @@
       const isOpen = mobileMenu.classList.toggle('open');
       hamburger.classList.toggle('open', isOpen);
       hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
     });
     document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
       });
     });
 
@@ -1302,18 +1578,25 @@
       q.addEventListener('click', () => {
         const item = q.closest('.faq-item');
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          q.setAttribute('aria-expanded', 'true');
+        }
       });
     });
 
     // ===== COUNTUP ANIMATION =====
-    function countUp(el, target, duration, suffix) {
+    // HTMLを <span class="num-value">数値</span><span class="unit">単位</span> 構造に対応
+    function countUp(numValueEl, target, duration) {
       let start = 0;
       const step = target / (duration / 16);
       const tick = () => {
         start = Math.min(start + step, target);
-        el.textContent = Math.floor(start) + suffix;
+        numValueEl.textContent = Math.floor(start);
         if (start < target) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -1321,12 +1604,11 @@
     const statsObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const nums = entry.target.querySelectorAll('.stat-num');
+          const numValues = entry.target.querySelectorAll('.num-value');
           const targets = [14, 2, 100, 3];
-          const suffixes = ['年', '回', 'km', '位'];
-          nums.forEach((num, i) => {
-            num.textContent = '0' + suffixes[i];
-            countUp(num, targets[i], 1200, suffixes[i]);
+          numValues.forEach((el, i) => {
+            el.textContent = '0';
+            countUp(el, targets[i], 1200);
           });
           statsObs.unobserve(entry.target);
         }
