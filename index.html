@@ -132,8 +132,11 @@
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: 1px;
-      padding: 0.5rem 0;
+      padding: 0.75rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
+      min-height: 44px;
+      display: flex;
+      align-items: center;
     }
 
     /* ===== HERO ===== */
@@ -957,12 +960,56 @@
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 580px) {
-      section { padding: 4rem 5%; }
+      section { padding: 3.5rem 5%; }
       .activities-grid { grid-template-columns: 1fr; }
       .hero-cta { flex-direction: column; align-items: center; }
-      .footer-top { flex-direction: column; }
+      .hero-cta .btn { width: 100%; max-width: 320px; justify-content: center; }
+      .footer-top { flex-direction: column; gap: 1.5rem; }
       .members-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .join-grid { gap: 2rem; }
+      .about-card-bg { padding: 1.75rem; }
+      .feature-item { padding: 1.25rem; }
+      .access-map-placeholder { height: 200px; font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      :root { --nav-h: 56px; }
+      section { padding: 3rem 4%; }
+      .nav-logo { font-size: 1.25rem; }
+      /* stats: 1列に */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .stat-num { font-size: clamp(2rem, 10vw, 2.8rem); }
+      /* gallery: 1列に */
+      .gallery-grid { grid-template-columns: 1fr; }
+      /* section titles */
+      .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+      /* members */
+      .members-grid { grid-template-columns: 1fr; }
+      .member-card { padding: 1.25rem 1rem; }
+      /* features */
+      .feature-item { gap: 0.75rem; }
+      .feature-num { font-size: 2rem; width: 2rem; }
+      /* activities */
+      .activity-card-thumb { height: 120px; font-size: 2.5rem; }
+      /* access */
+      .access-info-card { padding: 1rem; }
+      /* join */
+      .join-contact { padding: 1.25rem; }
+      .contact-item { gap: 0.75rem; }
+      /* footer */
+      .footer-links { min-width: 0; }
+      .footer-top { gap: 1.25rem; }
+      /* hero */
+      .hero-content { padding: 0 1rem; padding-top: var(--nav-h); }
+      .hero-badge { font-size: 0.7rem; letter-spacing: 2px; }
+      /* btn touch target */
+      .btn { padding: 0.9rem 1.5rem; min-height: 44px; }
+      /* hamburger touch target */
+      .hamburger { padding: 8px; }
+      /* faq */
+      .faq-q { font-size: 0.88rem; padding: 0.75rem 0; }
+      .faq-a { max-height: none; font-size: 0.85rem; }
+      .faq-item.open .faq-a { max-height: 500px; }
     }
   </style>
 </head>
