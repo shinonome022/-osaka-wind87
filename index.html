@@ -1610,15 +1610,28 @@
 
     // ===== SCROLL ANIMATION (IntersectionObserver) =====
     const fadeEls = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    fadeEls.forEach(el => observer.observe(el));
+    function revealAll() {
+      fadeEls.forEach(el => el.classList.add('visible'));
+    }
+    if ('IntersectionObserver' in window) {
+      try {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+        fadeEls.forEach(el => observer.observe(el));
+        // 安全策: 2秒後に未表示の要素を強制表示
+        setTimeout(revealAll, 2000);
+      } catch(e) {
+        revealAll();
+      }
+    } else {
+      revealAll();
+    }
 
     // ===== FAQ ACCORDION =====
     document.querySelectorAll('.faq-q').forEach(q => {
