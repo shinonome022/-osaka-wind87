@@ -32,6 +32,7 @@
       --white:     #FFFFFF;
       --text:      #1A1A2E;
       --bg-light:  #F0F8FF;
+      --bar-h:     46px;
       --nav-h:     64px;
     }
     html { scroll-behavior: smooth; }
@@ -45,10 +46,68 @@
     img { display: block; max-width: 100%; }
     ul { list-style: none; }
 
+    /* ===== ANNOUNCE BAR ===== */
+    #announce-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--bar-h);
+      background: linear-gradient(90deg, #e05d00, var(--accent), #ffaa00);
+      z-index: 1002;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0 3rem 0 1rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      animation: fadeDown 0.6s ease both;
+    }
+    .bar-shinkan-badge {
+      background: rgba(255,255,255,0.25);
+      padding: 0.2rem 0.65rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .bar-text { opacity: 0.95; white-space: nowrap; }
+    .bar-link {
+      color: var(--white);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .bar-link:hover { opacity: 0.82; }
+    .bar-close {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%; transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .bar-close:hover { color: var(--white); }
+    /* バー非表示時の調整 */
+    body.bar-hidden #announce-bar { display: none; }
+    body.bar-hidden #navbar { top: 0; }
+    body.bar-hidden .mobile-menu { top: var(--nav-h); }
+    body.bar-hidden .hero-content { padding-top: var(--nav-h); }
+
     /* ===== NAVIGATION ===== */
     #navbar {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: var(--bar-h); left: 0; right: 0;
       height: var(--nav-h);
       background: rgba(0, 20, 50, 0.85);
       backdrop-filter: blur(10px);
@@ -119,7 +178,7 @@
     .mobile-menu {
       display: none;
       position: fixed;
-      top: var(--nav-h); left: 0; right: 0;
+      top: calc(var(--nav-h) + var(--bar-h)); left: 0; right: 0;
       background: rgba(0, 20, 50, 0.97);
       padding: 1.5rem 5%;
       z-index: 999;
@@ -205,7 +264,7 @@
       position: relative;
       z-index: 1;
       padding: 0 1.5rem;
-      padding-top: var(--nav-h);
+      padding-top: calc(var(--nav-h) + var(--bar-h));
     }
     .hero-badge {
       display: inline-block;
@@ -632,6 +691,48 @@
       inset: 0;
       width: 100%; height: 100%;
       border: 0;
+    }
+    .video-thumb-link {
+      position: absolute;
+      inset: 0;
+      display: block;
+      text-decoration: none;
+    }
+    .video-thumb-link img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: background 0.25s;
+    }
+    .video-thumb-link:hover .video-thumb-overlay { background: rgba(0,0,0,0.45); }
+    .video-thumb-btn {
+      width: 72px; height: 72px;
+      background: rgba(255,0,0,0.85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--white);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .video-thumb-link:hover .video-thumb-btn { transform: scale(1.12); background: #ff0000; }
+    .video-thumb-label {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
     .video-placeholder {
       position: absolute;
@@ -1095,8 +1196,13 @@
       .feature-item { padding: 1.25rem; }
       .access-map-placeholder { height: 200px; font-size: 2rem; }
     }
+    @media (max-width: 640px) {
+      #announce-bar { font-size: 0.75rem; gap: 0.4rem; padding-right: 2.5rem; }
+      .bar-shinkan-badge { display: none; }
+    }
     @media (max-width: 480px) {
-      :root { --nav-h: 56px; }
+      :root { --nav-h: 56px; --bar-h: 42px; }
+      .bar-text { display: none; }
       section { padding: 3rem 4%; }
       .nav-logo { font-size: 1.25rem; }
       /* stats: 1列に */
@@ -1137,6 +1243,18 @@
   </style>
 </head>
 <body>
+
+  <!-- ANNOUNCE BAR：新歓Instagram -->
+  <div id="announce-bar" role="banner" aria-label="新入生歓迎のお知らせ">
+    <span class="bar-shinkan-badge">🎉 新歓2026</span>
+    <span class="bar-text">新入生歓迎専用インスタ開設！</span>
+    <a href="https://www.instagram.com/osaka_windsurfing_shinkan_2026/"
+       target="_blank" rel="noopener" class="bar-link"
+       aria-label="新歓Instagram @osaka_windsurfing_shinkan_2026 を開く">
+      📷 @osaka_windsurfing_shinkan_2026
+    </a>
+    <button class="bar-close" id="barClose" aria-label="このお知らせを閉じる" title="閉じる">✕</button>
+  </div>
 
   <!-- NAVIGATION -->
   <nav id="navbar">
@@ -1452,14 +1570,19 @@
       <h2 class="section-title fade-up">活動ムービー</h2>
       <div class="section-divider fade-up"></div>
       <div class="video-wrap fade-up">
-        <iframe
-          src="https://www.youtube.com/embed/y0cMp3yhipU?si=3_Xlq9Gho0MSBqgI"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen loading="lazy">
-        </iframe>
+        <a href="https://www.youtube.com/watch?v=y0cMp3yhipU"
+           target="_blank" rel="noopener"
+           class="video-thumb-link"
+           aria-label="YouTubeで動画を見る：大阪大学体育会ウインドサーフィン部">
+          <img
+            src="https://img.youtube.com/vi/y0cMp3yhipU/maxresdefault.jpg"
+            alt="大阪大学体育会ウインドサーフィン部 活動紹介動画サムネイル"
+            loading="lazy">
+          <div class="video-thumb-overlay">
+            <div class="video-thumb-btn" aria-hidden="true">▶</div>
+            <span class="video-thumb-label">YouTubeで視聴する</span>
+          </div>
+        </a>
       </div>
       <p style="text-align:center; color:#666; font-size:0.83rem; margin-top:1.25rem;">
         最新の活動写真・動画は
@@ -1475,9 +1598,24 @@
       <p class="section-label fade-up">Instagram</p>
       <h2 class="section-title fade-up">SNS・最新情報</h2>
       <div class="section-divider fade-up"></div>
+      <!-- 新歓アカウント（メイン訴求） -->
+      <div class="fade-up" style="background:linear-gradient(135deg,#ff6b35,#f09433,#e6683c); border-radius:20px; padding:2rem 2.5rem; margin-bottom:2.5rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; box-shadow:0 12px 40px rgba(247,127,0,0.35);">
+        <div>
+          <p style="font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.8); margin-bottom:0.4rem;">🎉 2026年度 新入生歓迎専用アカウント</p>
+          <p style="font-size:1.6rem; font-weight:900; color:#fff; margin-bottom:0.3rem; font-family:'Bebas Neue',cursive; letter-spacing:2px;">@osaka_windsurfing_shinkan_2026</p>
+          <p style="font-size:0.88rem; color:rgba(255,255,255,0.88); line-height:1.7;">新歓イベント情報・練習体験の様子など、新入生向けの最新情報はこちらで発信！<br>まずはフォローして、私たちの雰囲気を感じてください。</p>
+        </div>
+        <a href="https://www.instagram.com/osaka_windsurfing_shinkan_2026/"
+           target="_blank" rel="noopener"
+           style="background:#fff; color:#e6683c; font-weight:900; font-size:0.92rem; padding:0.85rem 1.75rem; border-radius:50px; white-space:nowrap; text-decoration:none; flex-shrink:0; transition:transform 0.2s,box-shadow 0.2s; display:inline-flex; align-items:center; gap:0.5rem; box-shadow:0 4px 16px rgba(0,0,0,0.15);"
+           onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.2)'"
+           onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.15)'">
+          <span aria-hidden="true">📷</span> 新歓アカウントをフォロー
+        </a>
+      </div>
+
       <p class="fade-up" style="color:#555; font-size:0.97rem; margin-bottom:2rem; line-height:1.85; max-width:640px;">
-        練習風景・大会・遠征・新歓イベントなど、日々の活動をInstagramで発信中。<br>
-        フォローして最新情報をいち早くキャッチしてください！
+        練習風景・大会・遠征など、日々の活動は公式アカウントでも発信中！
       </p>
 
       <!-- フィードグリッド（実際の写真はクライアントから受領後に差し替え）
@@ -1521,11 +1659,20 @@
         </a>
       </div>
 
-      <div class="ig-cta fade-up">
-        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener" class="btn-ig">
-          <span aria-hidden="true">📷</span> @osakawind87 をフォロー
-        </a>
-        <p class="ig-username">instagram.com/osakawind87</p>
+      <div class="ig-cta fade-up" style="display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+          <a href="https://www.instagram.com/osaka_windsurfing_shinkan_2026/"
+             target="_blank" rel="noopener" class="btn-ig">
+            <span aria-hidden="true">🎉</span> 新歓 @osaka_windsurfing_shinkan_2026
+          </a>
+          <a href="https://www.instagram.com/osakawind87/"
+             target="_blank" rel="noopener"
+             style="background:var(--primary); color:var(--white); display:inline-flex; align-items:center; gap:0.5rem; padding:0.9rem 2rem; border-radius:50px; font-weight:700; font-size:0.95rem; text-decoration:none; transition:transform 0.2s,box-shadow 0.2s;"
+             onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 30px rgba(0,0,0,0.25)'"
+             onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span aria-hidden="true">📷</span> 公式 @osakawind87
+          </a>
+        </div>
         <p class="ig-note">
           ※ 実際の投稿写真はInstagram公式アカウントでご確認ください。<br>
           公式投稿の埋め込みはクライアント確認後に順次対応予定。
@@ -1805,6 +1952,14 @@
   </footer>
 
   <script>
+    // ===== ANNOUNCE BAR CLOSE =====
+    const barClose = document.getElementById('barClose');
+    if (barClose) {
+      barClose.addEventListener('click', () => {
+        document.body.classList.add('bar-hidden');
+      });
+    }
+
     // ===== NAVBAR SCROLL =====
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
