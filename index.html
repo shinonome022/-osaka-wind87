@@ -849,12 +849,14 @@
       transition: opacity 0.25s;
     }
     .ig-post:hover .ig-post-icon { opacity: 1; }
-    .ig-bg1 { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .ig-bg2 { background: linear-gradient(135deg, #0077B6, #00B4D8); }
-    .ig-bg3 { background: linear-gradient(135deg, #023E8A, #0077B6); }
-    .ig-bg4 { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
-    .ig-bg5 { background: linear-gradient(135deg, #F77F00, #FCBF49); }
-    .ig-bg6 { background: linear-gradient(135deg, #0077B6, #F77F00); }
+    .ig-post { background: linear-gradient(135deg, #023E8A, #0077B6); }
+    .ig-post img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .ig-cta { text-align: center; }
     .btn-ig {
       background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
@@ -1712,40 +1714,40 @@
       <h2 class="section-title fade-up">フォトギャラリー</h2>
       <div class="section-divider fade-up"></div>
       <div class="gallery-grid">
-        <div class="gallery-item fade-up" aria-label="定期練習の様子">
-          <img src="./images/gallery/practice-01.jpg" alt="定期練習の様子" class="gallery-img" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">定期練習 / 甲子園浜</span>
-          </div>
-        </div>
-        <div class="gallery-item fade-up delay-1" aria-label="練習風景">
-          <img src="./images/gallery/practice-02.jpg" alt="練習風景" class="gallery-img" loading="lazy">
-          <div class="gallery-overlay">
-            <span class="gallery-caption">練習風景</span>
-          </div>
-        </div>
-        <div class="gallery-item fade-up delay-2" aria-label="ウインドサーフィン">
-          <img src="./images/gallery/windsurfing-01.jpg" alt="ウインドサーフィンの様子" class="gallery-img" loading="lazy">
+        <div class="gallery-item fade-up" aria-label="ウインドサーフィンの様子">
+          <img src="./images/gallery/windsurfing-04.jpg" alt="ウインドサーフィンの様子" class="gallery-img" loading="lazy">
           <div class="gallery-overlay">
             <span class="gallery-caption">ウインドサーフィン</span>
           </div>
         </div>
-        <div class="gallery-item fade-up delay-3" aria-label="チームの様子">
-          <img src="./images/gallery/practice-04.jpg" alt="チームの様子" class="gallery-img" loading="lazy">
+        <div class="gallery-item fade-up delay-1" aria-label="練習風景">
+          <img src="./images/gallery/windsurfing-05.jpg" alt="練習風景" class="gallery-img" loading="lazy">
           <div class="gallery-overlay">
-            <span class="gallery-caption">チームの様子</span>
+            <span class="gallery-caption">練習風景</span>
           </div>
         </div>
-        <div class="gallery-item fade-up delay-4" aria-label="レース・大会">
-          <img src="./images/gallery/windsurfing-03.jpg" alt="レース・大会" class="gallery-img" loading="lazy">
+        <div class="gallery-item fade-up delay-2" aria-label="海上練習">
+          <img src="./images/gallery/windsurfing-06.jpg" alt="海上練習" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">海上練習 / 甲子園浜</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-up delay-3" aria-label="レース・大会">
+          <img src="./images/gallery/windsurfing-08.jpg" alt="レース・大会" class="gallery-img" loading="lazy">
           <div class="gallery-overlay">
             <span class="gallery-caption">レース・大会</span>
           </div>
         </div>
-        <div class="gallery-item fade-up delay-5" aria-label="海上練習">
-          <img src="./images/gallery/practice-06.jpg" alt="海上練習" class="gallery-img" loading="lazy">
+        <div class="gallery-item fade-up delay-4" aria-label="チームの様子">
+          <img src="./images/gallery/practice-07.jpg" alt="チームの様子" class="gallery-img" loading="lazy">
           <div class="gallery-overlay">
-            <span class="gallery-caption">海上練習</span>
+            <span class="gallery-caption">チームの様子</span>
+          </div>
+        </div>
+        <div class="gallery-item fade-up delay-5" aria-label="定期練習">
+          <img src="./images/gallery/practice-09.jpg" alt="定期練習" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay">
+            <span class="gallery-caption">定期練習</span>
           </div>
         </div>
       </div>
@@ -1815,33 +1817,33 @@
       -->
       <div class="ig-grid">
         <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
-           class="ig-post ig-bg1 fade-up" aria-label="Instagram投稿 - 練習風景">
-          <span aria-hidden="true">🌊</span>
+           class="ig-post fade-up" aria-label="Instagram投稿 - 練習風景">
+          <img src="./images/gallery/activity-practice.jpg" alt="練習風景" loading="lazy">
           <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
         </a>
         <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
-           class="ig-post ig-bg2 fade-up delay-1" aria-label="Instagram投稿 - 大会レース">
-          <span aria-hidden="true">🏄</span>
+           class="ig-post fade-up delay-1" aria-label="Instagram投稿 - 大会レース">
+          <img src="./images/gallery/activity-comp.jpg" alt="大会レース" loading="lazy">
           <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
         </a>
         <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
-           class="ig-post ig-bg3 fade-up delay-2" aria-label="Instagram投稿 - 遠征">
-          <span aria-hidden="true">⛵</span>
+           class="ig-post fade-up delay-2" aria-label="Instagram投稿 - 遠征">
+          <img src="./images/gallery/activity-tour.jpg" alt="遠征" loading="lazy">
           <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
         </a>
         <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
-           class="ig-post ig-bg4 fade-up delay-3" aria-label="Instagram投稿 - チーム">
-          <span aria-hidden="true">🏆</span>
+           class="ig-post fade-up delay-3" aria-label="Instagram投稿 - 自主練">
+          <img src="./images/gallery/activity-training.jpg" alt="自主練" loading="lazy">
           <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
         </a>
         <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
-           class="ig-post ig-bg5 fade-up delay-4" aria-label="Instagram投稿 - 新歓">
-          <span aria-hidden="true">🔥</span>
+           class="ig-post fade-up delay-4" aria-label="Instagram投稿 - 合同練習">
+          <img src="./images/gallery/activity-meet.jpg" alt="合同練習" loading="lazy">
           <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
         </a>
         <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
-           class="ig-post ig-bg6 fade-up delay-5" aria-label="Instagram投稿 - 甲子園浜">
-          <span aria-hidden="true">🌅</span>
+           class="ig-post fade-up delay-5" aria-label="Instagram投稿 - 甲子園浜">
+          <img src="./images/gallery/practice-09.jpg" alt="甲子園浜での練習" loading="lazy">
           <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
         </a>
       </div>
