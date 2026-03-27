@@ -617,6 +617,124 @@
     .gallery-note a { color: var(--primary); font-weight: 700; }
     .gallery-note a:hover { color: var(--accent); }
 
+    /* ===== VIDEO ===== */
+    #video { background: var(--white); }
+    .video-wrap {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      background: #000;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      background: linear-gradient(135deg, #001430, #0077B6);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem;
+    }
+    .video-play-icon {
+      width: 88px; height: 88px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .video-wrap:hover .video-play-icon { background: var(--accent); transform: scale(1.08); }
+    .video-placeholder h3 { font-size: 1.3rem; font-weight: 900; }
+    .video-placeholder p  { font-size: 0.9rem; opacity: 0.8; max-width: 400px; line-height: 1.7; }
+
+    /* ===== INSTAGRAM ===== */
+    #instagram { background: var(--bg-light); }
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .ig-post {
+      aspect-ratio: 1 / 1;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+    }
+    .ig-post:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(0,0,0,0.18); }
+    .ig-post-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s;
+    }
+    .ig-post:hover .ig-post-overlay { background: rgba(0,0,0,0.38); }
+    .ig-post-icon {
+      color: var(--white);
+      font-size: 2rem;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .ig-post:hover .ig-post-icon { opacity: 1; }
+    .ig-bg1 { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .ig-bg2 { background: linear-gradient(135deg, #0077B6, #00B4D8); }
+    .ig-bg3 { background: linear-gradient(135deg, #023E8A, #0077B6); }
+    .ig-bg4 { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
+    .ig-bg5 { background: linear-gradient(135deg, #F77F00, #FCBF49); }
+    .ig-bg6 { background: linear-gradient(135deg, #0077B6, #F77F00); }
+    .ig-cta { text-align: center; }
+    .btn-ig {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-ig:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .ig-username {
+      text-align: center;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.88rem;
+      margin-top: 0.75rem;
+    }
+    .ig-note {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #777;
+      margin-top: 1rem;
+      line-height: 1.7;
+    }
+
     /* ===== FEATURES ===== */
     #features { background: var(--white); }
     .features-grid {
@@ -961,6 +1079,7 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
       .members-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .ig-grid { grid-template-columns: repeat(3, 1fr); }
     }
     @media (max-width: 580px) {
       section { padding: 3.5rem 5%; }
@@ -970,6 +1089,7 @@
       .footer-top { flex-direction: column; gap: 1.5rem; }
       .members-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .ig-grid { grid-template-columns: repeat(2, 1fr); }
       .join-grid { gap: 2rem; }
       .about-card-bg { padding: 1.75rem; }
       .feature-item { padding: 1.25rem; }
@@ -1026,6 +1146,8 @@
       <li><a href="#activities">Activities</a></li>
       <li><a href="#members">Members</a></li>
       <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#instagram">Instagram</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#access">Access</a></li>
       <li><a href="#join">Join Us</a></li>
@@ -1039,6 +1161,8 @@
     <a href="#activities" class="mobile-link">Activities</a>
     <a href="#members" class="mobile-link">Members</a>
     <a href="#gallery" class="mobile-link">Gallery</a>
+    <a href="#video" class="mobile-link">Video</a>
+    <a href="#instagram" class="mobile-link">Instagram</a>
     <a href="#features" class="mobile-link">Features</a>
     <a href="#access" class="mobile-link">Access</a>
     <a href="#join" class="mobile-link">Join Us</a>
@@ -1321,6 +1445,95 @@
     </div>
   </section>
 
+  <!-- VIDEO -->
+  <section id="video">
+    <div class="section-inner">
+      <p class="section-label fade-up">Video</p>
+      <h2 class="section-title fade-up">活動ムービー</h2>
+      <div class="section-divider fade-up"></div>
+      <div class="video-wrap fade-up">
+        <iframe
+          src="https://www.youtube.com/embed/y0cMp3yhipU?si=3_Xlq9Gho0MSBqgI"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen loading="lazy">
+        </iframe>
+      </div>
+      <p style="text-align:center; color:#666; font-size:0.83rem; margin-top:1.25rem;">
+        最新の活動写真・動画は
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           style="color:var(--primary); font-weight:700;">Instagram @osakawind87</a> でも随時更新中！
+      </p>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <div class="section-inner">
+      <p class="section-label fade-up">Instagram</p>
+      <h2 class="section-title fade-up">SNS・最新情報</h2>
+      <div class="section-divider fade-up"></div>
+      <p class="fade-up" style="color:#555; font-size:0.97rem; margin-bottom:2rem; line-height:1.85; max-width:640px;">
+        練習風景・大会・遠征・新歓イベントなど、日々の活動をInstagramで発信中。<br>
+        フォローして最新情報をいち早くキャッチしてください！
+      </p>
+
+      <!-- フィードグリッド（実際の写真はクライアントから受領後に差し替え）
+           各リンクをクリックするとInstagramへ移動します。
+           ▼ 実際の投稿を埋め込む方法:
+             1. Instagramで投稿を開く
+             2. 「...」→「埋め込む」→埋め込みコードをコピー
+             3. このgridの下にblockquoteタグを貼り付け
+             4. <script async src="//www.instagram.com/embed.js"></script> を追加
+      -->
+      <div class="ig-grid">
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           class="ig-post ig-bg1 fade-up" aria-label="Instagram投稿 - 練習風景">
+          <span aria-hidden="true">🌊</span>
+          <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
+        </a>
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           class="ig-post ig-bg2 fade-up delay-1" aria-label="Instagram投稿 - 大会レース">
+          <span aria-hidden="true">🏄</span>
+          <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
+        </a>
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           class="ig-post ig-bg3 fade-up delay-2" aria-label="Instagram投稿 - 遠征">
+          <span aria-hidden="true">⛵</span>
+          <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
+        </a>
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           class="ig-post ig-bg4 fade-up delay-3" aria-label="Instagram投稿 - チーム">
+          <span aria-hidden="true">🏆</span>
+          <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
+        </a>
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           class="ig-post ig-bg5 fade-up delay-4" aria-label="Instagram投稿 - 新歓">
+          <span aria-hidden="true">🔥</span>
+          <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
+        </a>
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener"
+           class="ig-post ig-bg6 fade-up delay-5" aria-label="Instagram投稿 - 甲子園浜">
+          <span aria-hidden="true">🌅</span>
+          <div class="ig-post-overlay"><span class="ig-post-icon" aria-hidden="true">📷</span></div>
+        </a>
+      </div>
+
+      <div class="ig-cta fade-up">
+        <a href="https://www.instagram.com/osakawind87/" target="_blank" rel="noopener" class="btn-ig">
+          <span aria-hidden="true">📷</span> @osakawind87 をフォロー
+        </a>
+        <p class="ig-username">instagram.com/osakawind87</p>
+        <p class="ig-note">
+          ※ 実際の投稿写真はInstagram公式アカウントでご確認ください。<br>
+          公式投稿の埋め込みはクライアント確認後に順次対応予定。
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- FEATURES -->
   <section id="features">
     <div class="section-inner">
@@ -1395,9 +1608,14 @@
       <h2 class="section-title fade-up">練習場所</h2>
       <div class="section-divider fade-up"></div>
       <div class="access-grid">
-        <div class="access-map-placeholder fade-up">
-          <span aria-hidden="true">&#127946;</span>
-          <p>兵庫県西宮市 甲子園浜</p>
+        <div class="fade-up" style="border-radius:16px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.12);">
+          <iframe
+            src="https://maps.google.com/maps?q=34.7220,135.3650&z=15&output=embed&hl=ja"
+            width="100%" height="320" style="border:0; display:block;"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="甲子園浜 練習場所マップ（兵庫県西宮市）">
+          </iframe>
         </div>
         <div class="access-info-list">
           <div class="access-info-card fade-up delay-1">
