@@ -732,11 +732,13 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.15);
       background: #000;
     }
-    .video-wrap iframe {
+    .video-wrap iframe,
+    .video-wrap video {
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
       border: 0;
+      object-fit: cover;
     }
     .video-thumb-link {
       position: absolute;
@@ -1747,19 +1749,14 @@
       <h2 class="section-title fade-up">活動ムービー</h2>
       <div class="section-divider fade-up"></div>
       <div class="video-wrap fade-up">
-        <a href="https://www.youtube.com/watch?v=y0cMp3yhipU"
-           target="_blank" rel="noopener"
-           class="video-thumb-link"
-           aria-label="YouTubeで動画を見る：大阪大学体育会ウインドサーフィン部">
-          <img
-            src="https://img.youtube.com/vi/y0cMp3yhipU/maxresdefault.jpg"
-            alt="大阪大学体育会ウインドサーフィン部 活動紹介動画サムネイル"
-            loading="lazy">
-          <div class="video-thumb-overlay">
-            <div class="video-thumb-btn" aria-hidden="true">▶</div>
-            <span class="video-thumb-label">YouTubeで視聴する</span>
-          </div>
-        </a>
+        <video
+          src="./videos/windsurfing.mp4"
+          controls
+          playsinline
+          preload="metadata"
+          poster="./images/gallery/practice-01.jpg"
+          aria-label="大阪大学体育会ウインドサーフィン部 活動紹介動画">
+        </video>
       </div>
       <p style="text-align:center; color:#666; font-size:0.83rem; margin-top:1.25rem;">
         最新の活動写真・動画は
