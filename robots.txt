@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shinonome022.github.io/-osaka-wind87/sitemap.xml
