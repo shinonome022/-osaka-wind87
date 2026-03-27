@@ -538,13 +538,15 @@
       font-size: 3.5rem;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(135deg, #023E8A, #0077B6);
     }
-    .thumb-practice { background: linear-gradient(135deg, #023E8A, #0077B6); }
-    .thumb-comp     { background: linear-gradient(135deg, #0077B6, #00B4D8); }
-    .thumb-tour     { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
-    .thumb-manager  { background: linear-gradient(135deg, #F77F00, #FCBF49); }
-    .thumb-team     { background: linear-gradient(135deg, #0077B6, #F77F00); }
-    .thumb-meet     { background: linear-gradient(135deg, #023E8A, #00B4D8); }
+    .activity-card-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .activity-card-body { padding: 1.25rem 1.5rem 1.5rem; }
     .activity-card-body h3 {
       font-weight: 900;
@@ -1464,42 +1466,54 @@
       <div class="section-divider fade-up"></div>
       <div class="activities-grid">
         <div class="activity-card fade-up">
-          <div class="activity-card-thumb thumb-practice" aria-hidden="true">&#127940;</div>
+          <div class="activity-card-thumb">
+            <img src="./images/activities/activity-practice.jpg" alt="定期練習の様子" loading="lazy">
+          </div>
           <div class="activity-card-body">
             <h3>定期練習</h3>
             <p>毎週土日、甲子園浜で実施。風と波を体で感じながら、技術を磨きます。神戸大学との合同練習もあり、仲間と切磋琢磨できる環境です。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-1">
-          <div class="activity-card-thumb thumb-comp" aria-hidden="true">&#127942;</div>
+          <div class="activity-card-thumb">
+            <img src="./images/activities/activity-comp.jpg" alt="大会・インカレの様子" loading="lazy">
+          </div>
           <div class="activity-card-body">
             <h3>大会・インカレ</h3>
             <p>関西大会からスタートし、全国大会（インカレ）を目指します。津久井浜（神奈川）など各地で開催される大会に積極参加しています。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-2">
-          <div class="activity-card-thumb thumb-tour" aria-hidden="true">&#9992;</div>
+          <div class="activity-card-thumb">
+            <img src="./images/activities/activity-tour.jpg" alt="遠征の様子" loading="lazy">
+          </div>
           <div class="activity-card-body">
             <h3>遠征</h3>
             <p>琵琶湖・浜名湖・津久井浜、そして憧れの沖縄インカレへ。遠征先での練習と大会は、部員の絆を深める最高の機会です。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-3">
-          <div class="activity-card-thumb thumb-manager" aria-hidden="true">&#9875;</div>
+          <div class="activity-card-thumb">
+            <img src="./images/activities/activity-manager.jpg" alt="マネージャーの活躍" loading="lazy">
+          </div>
           <div class="activity-card-body">
             <h3>マネージャーの活躍</h3>
             <p>マネージャーは船舶免許を取得し、レース運営やプレイヤーのレスキューを担当。チームに不可欠な重要ポジションです。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-4">
-          <div class="activity-card-thumb thumb-team" aria-hidden="true">&#127942;</div>
+          <div class="activity-card-thumb">
+            <img src="./images/activities/activity-training.jpg" alt="自主練・個人強化" loading="lazy">
+          </div>
           <div class="activity-card-body">
             <h3>自主練・個人強化</h3>
             <p>平日は各自の空き時間を活用した自主練習も実施。個人技術の向上を通じて、チーム全体の底上げを図ります。</p>
           </div>
         </div>
         <div class="activity-card fade-up delay-5">
-          <div class="activity-card-thumb thumb-meet" aria-hidden="true">&#127979;</div>
+          <div class="activity-card-thumb">
+            <img src="./images/activities/activity-meet.jpg" alt="合同練習・交流" loading="lazy">
+          </div>
           <div class="activity-card-body">
             <h3>合同練習・交流</h3>
             <p>甲子園浜では神戸大学・関西学院大学・甲南大学・武庫川女子大学とも交流。広い仲間のネットワークが生まれます。</p>
