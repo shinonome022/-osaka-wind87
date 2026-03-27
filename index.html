@@ -1765,9 +1765,11 @@
       <div class="section-divider fade-up"></div>
       <div class="video-wrap fade-up">
         <video
+          id="hero-video"
           src="./videos/windsurfing.mp4"
           controls
           playsinline
+          muted
           preload="metadata"
           poster="./images/gallery/practice-01.jpg"
           aria-label="大阪大学体育会ウインドサーフィン部 活動紹介動画">
@@ -2226,6 +2228,21 @@
       };
       requestAnimationFrame(tick);
     }
+    // ===== VIDEO AUTOPLAY ON SCROLL =====
+    const heroVideo = document.getElementById('hero-video');
+    if (heroVideo) {
+      const videoObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            heroVideo.play().catch(() => {});
+          } else {
+            heroVideo.pause();
+          }
+        });
+      }, { threshold: 0.3 });
+      videoObs.observe(heroVideo);
+    }
+
     const statsObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
