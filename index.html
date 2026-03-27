@@ -568,7 +568,7 @@
     .member-card {
       background: var(--bg-light);
       border-radius: 16px;
-      padding: 1.75rem 1.5rem;
+      padding: 1.5rem 1.25rem 1.75rem;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       transition: transform 0.25s, box-shadow 0.25s;
@@ -577,44 +577,81 @@
       transform: translateY(-5px);
       box-shadow: 0 12px 35px rgba(0,119,182,0.15);
     }
-    .member-avatar {
-      width: 72px; height: 72px;
+    .member-photo-link {
+      display: block;
+      text-decoration: none;
+      margin-bottom: 1rem;
+    }
+    .member-photo-wrap {
+      width: 96px; height: 96px;
       border-radius: 50%;
-      margin: 0 auto 1rem;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: 3px solid var(--white);
+      box-shadow: 0 4px 16px rgba(0,119,182,0.25);
+    }
+    .member-photo-wrap.manager-wrap {
+      background: linear-gradient(135deg, var(--accent), #FCBF49);
+    }
+    .member-photo {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .member-sail {
+      position: absolute;
+      bottom: 4px; right: 2px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.55rem;
+      font-weight: 900;
+      padding: 1px 4px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+    }
+    .member-photo-icon {
+      width: 100%; height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
     }
-    .avatar-blue   { background: linear-gradient(135deg, var(--primary), var(--secondary)); }
-    .avatar-orange { background: linear-gradient(135deg, var(--accent), #FCBF49); }
-    .avatar-teal   { background: linear-gradient(135deg, #00B4D8, #48CAE4); }
     .member-role {
       display: inline-block;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 0.2rem 0.8rem;
+      letter-spacing: 1.5px;
+      padding: 0.2rem 0.75rem;
       border-radius: 50px;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
     .role-player  { background: var(--primary); color: var(--white); }
     .role-manager { background: var(--accent); color: var(--white); }
+    .role-captain { background: linear-gradient(90deg, #023E8A, #F77F00); color: var(--white); }
     .member-name {
       font-weight: 900;
-      font-size: 1.05rem;
-      margin-bottom: 0.25rem;
+      font-size: 1rem;
+      margin-bottom: 0.1rem;
       color: var(--text);
     }
-    .member-dept {
-      font-size: 0.8rem;
-      color: var(--secondary);
+    .member-name-en {
+      font-size: 0.65rem;
       font-weight: 700;
-      margin-bottom: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--secondary);
+      margin-bottom: 0.4rem;
+    }
+    .member-dept {
+      font-size: 0.75rem;
+      color: #777;
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
     }
     .member-comment {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #555;
       line-height: 1.7;
     }
@@ -1179,6 +1216,7 @@
       .join-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
       .members-grid { grid-template-columns: repeat(2, 1fr); }
+      .member-photo-wrap { width: 84px; height: 84px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .ig-grid { grid-template-columns: repeat(3, 1fr); }
     }
@@ -1467,48 +1505,178 @@
       <h2 class="section-title fade-up">メンバー紹介</h2>
       <div class="section-divider fade-up"></div>
       <div class="members-grid">
+
+        <!-- 4回生 -->
         <div class="member-card fade-up">
-          <div class="member-avatar avatar-blue" aria-hidden="true">🏄</div>
-          <span class="member-role role-player">Player</span>
-          <p class="member-name">田中 颯太（4回生）</p>
-          <p class="member-dept">工学部 電子情報工学科</p>
-          <p class="member-comment">「入部時は泳げませんでしたが、今はインカレに出場しています。ウインドサーフィンは努力が結果に直結するスポーツ。一緒に全国を目指しましょう！」</p>
+          <a href="https://www.instagram.com/p/DV-gkFjk-2W/" target="_blank" rel="noopener" class="member-photo-link" aria-label="大崎 航輝のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DV-gkFjk-2W/media/?size=m" alt="大崎 航輝" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-1</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新4回生</span>
+          <p class="member-name">大崎 航輝</p>
+          <p class="member-name-en">OSAKI KOKI</p>
+          <p class="member-dept">工学部・応用自然科学科 / 兵庫出身</p>
+          <p class="member-comment">元主将・National Team選出🏆 やるときは誰よりもやる頼れる存在。部で一番の運転技術の持ち主でもあり。</p>
         </div>
+
         <div class="member-card fade-up delay-1">
-          <div class="member-avatar avatar-orange" aria-hidden="true">⛵</div>
-          <span class="member-role role-manager">Manager</span>
-          <p class="member-name">山本 葵（3回生）</p>
-          <p class="member-dept">人間科学部</p>
-          <p class="member-comment">「船舶免許を取って、海の上でチームを支えるのが最高にかっこいい！マネージャーも本気でウインドサーフィンに関われます。」</p>
+          <a href="https://www.instagram.com/p/DV8u6L_k5ub/" target="_blank" rel="noopener" class="member-photo-link" aria-label="小林 朋寛のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DV8u6L_k5ub/media/?size=m" alt="小林 朋寛" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-17</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新4回生</span>
+          <p class="member-name">小林 朋寛</p>
+          <p class="member-name-en">KOBAYASHI TOMOHIRO</p>
+          <p class="member-dept">経済学部・経済学科 / 宮城出身</p>
+          <p class="member-comment">元副将、通称ガッツ🔥 部内一の人気者。試験前日に富士山に誘っても即OKするフットワークの化け物。</p>
         </div>
+
         <div class="member-card fade-up delay-2">
-          <div class="member-avatar avatar-teal" aria-hidden="true">🌊</div>
-          <span class="member-role role-player">Player</span>
-          <p class="member-name">中村 蓮（2回生）</p>
-          <p class="member-dept">理学部 物理学科</p>
-          <p class="member-comment">「入部して1年で関西大会に出場できました。先輩がとても優しく教えてくれるので、初心者でも安心です。」</p>
+          <a href="https://www.instagram.com/p/DV7NLJUk9tm/" target="_blank" rel="noopener" class="member-photo-link" aria-label="在里 隼のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DV7NLJUk9tm/media/?size=m" alt="在里 隼" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-0</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新4回生</span>
+          <p class="member-name">在里 隼</p>
+          <p class="member-name-en">ARISATO SHUN</p>
+          <p class="member-dept">工学部・応用自然科学科 / 岡山出身</p>
+          <p class="member-comment">ブランド品とカレー（ここイチ）を愛する男💎 実家の太さを感じさせる独特の貫禄の持ち主。</p>
         </div>
+
+        <!-- 3回生 -->
         <div class="member-card fade-up delay-3">
-          <div class="member-avatar avatar-blue" aria-hidden="true">🏆</div>
-          <span class="member-role role-player">Player</span>
-          <p class="member-name">林 陽菜（3回生）</p>
-          <p class="member-dept">基礎工学部 システム科学科</p>
-          <p class="member-comment">「女子でもガンガン競技できる環境が整っています。海で風を感じながら走る瞬間は最高の解放感。ぜひ一緒に海へ！」</p>
+          <a href="https://www.instagram.com/p/DV4zMVGE4EE/" target="_blank" rel="noopener" class="member-photo-link" aria-label="森住 実慶のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DV4zMVGE4EE/media/?size=m" alt="森住 実慶" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#31</span>
+            </div>
+          </a>
+          <span class="member-role role-captain">新3回生・主将</span>
+          <p class="member-name">森住 実慶</p>
+          <p class="member-name-en">MORIZUMI SANEYOSHI</p>
+          <p class="member-dept">医学部・検査 / 兵庫出身</p>
+          <p class="member-comment">阪大の新主将🏄 一見脳筋に見えて意外と理論派セーラー。プロテインと筋トレが欠かせない努力家。</p>
         </div>
+
         <div class="member-card fade-up delay-4">
-          <div class="member-avatar avatar-orange" aria-hidden="true">⚓</div>
-          <span class="member-role role-manager">Manager</span>
-          <p class="member-name">佐藤 悠（2回生）</p>
-          <p class="member-dept">法学部</p>
-          <p class="member-comment">「文系でも全然大丈夫です！レース運営・タイム計測・道具のサポートなど、マネージャーの仕事は充実しています。」</p>
+          <a href="https://www.instagram.com/p/DVzvnF6k_FB/" target="_blank" rel="noopener" class="member-photo-link" aria-label="開発 陽向のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DVzvnF6k_FB/media/?size=m" alt="開発 陽向" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-3</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新3回生</span>
+          <p class="member-name">開発 陽向</p>
+          <p class="member-name-en">KAIHATSU HINATA</p>
+          <p class="member-dept">工学部・応用理工学科 / 兵庫出身</p>
+          <p class="member-comment">阪大ウィンド14代目の紅一点✨ パワフルなギャル系ガール。その明るさでみんなを自然と引き込んでしまう。</p>
         </div>
+
+        <!-- 2回生 -->
         <div class="member-card fade-up delay-5">
-          <div class="member-avatar avatar-teal" aria-hidden="true">💨</div>
-          <span class="member-role role-player">Player</span>
-          <p class="member-name">松田 浩介（4回生・主将）</p>
-          <p class="member-dept">経済学部</p>
-          <p class="member-comment">「4年間ウインドサーフィン一筋。少人数だからこそ、全員が主役になれるチームです。新入生、待ってます！」</p>
+          <a href="https://www.instagram.com/p/DVqrXccE8_M/" target="_blank" rel="noopener" class="member-photo-link" aria-label="大野 駿平のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DVqrXccE8_M/media/?size=m" alt="大野 駿平" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-18</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新2回生</span>
+          <p class="member-name">大野 駿平</p>
+          <p class="member-name-en">ONO SHUNPEI</p>
+          <p class="member-dept">基礎工学部・電子物理学科 / 兵庫出身</p>
+          <p class="member-comment">阪大の美風セーラー👑 リアル7頭身の高身長イケメンかつ学科主席入学。天は二物も三物も与えた。</p>
         </div>
+
+        <div class="member-card fade-up">
+          <a href="https://www.instagram.com/p/DVnoLjWkzm_/" target="_blank" rel="noopener" class="member-photo-link" aria-label="池田 帆斗のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DVnoLjWkzm_/media/?size=m" alt="池田 帆斗" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-8</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新2回生</span>
+          <p class="member-name">池田 帆斗</p>
+          <p class="member-name-en">IKEDA HANTO</p>
+          <p class="member-dept">外国語学部・仏語専攻 / 大阪出身</p>
+          <p class="member-comment">新2回生のエース🏆 肉体改造中のキラキラビジュアル系セーラー。ウィンドのことを質問すると嬉しそうに語ってくれる。</p>
+        </div>
+
+        <div class="member-card fade-up delay-1">
+          <a href="https://www.instagram.com/p/DVlRDv_Ew1n/" target="_blank" rel="noopener" class="member-photo-link" aria-label="松本 君慧のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DVlRDv_Ew1n/media/?size=m" alt="松本 君慧" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-33</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新2回生</span>
+          <p class="member-name">松本 君慧</p>
+          <p class="member-name-en">MATSUMOTO KIMIE</p>
+          <p class="member-dept">基礎工学部・システム科学科 / 大阪出身</p>
+          <p class="member-comment">圧倒的な陽のオーラのスーパーレディース🌟 メンズにも勝ってしまう負けず嫌いのパッション系セーラー。</p>
+        </div>
+
+        <div class="member-card fade-up delay-2">
+          <a href="https://www.instagram.com/p/DViOPBfE2Kn/" target="_blank" rel="noopener" class="member-photo-link" aria-label="橋本 悠汰のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DViOPBfE2Kn/media/?size=m" alt="橋本 悠汰" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#2</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新2回生</span>
+          <p class="member-name">橋本 悠汰</p>
+          <p class="member-name-en">HASHIMOTO YUTA</p>
+          <p class="member-dept">工学部・電子情報工学科 / 長野出身</p>
+          <p class="member-comment">豪州留学も経験した国際派✈️ みんなから愛される優しいキャラクターで、後輩力No.1の努力家。</p>
+        </div>
+
+        <div class="member-card fade-up delay-3">
+          <a href="https://www.instagram.com/p/DVfiM0NAeE7/" target="_blank" rel="noopener" class="member-photo-link" aria-label="廣田 大地のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DVfiM0NAeE7/media/?size=m" alt="廣田 大地" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-88</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新2回生</span>
+          <p class="member-name">廣田 大地</p>
+          <p class="member-name-en">HIROTA DAICHI</p>
+          <p class="member-dept">基礎工学部・情報科学科 / 兵庫出身</p>
+          <p class="member-comment">部内スマブラ最強「ダイチマン」🦹 マイペースながらいま爆発的に成長中。誰とでもすぐ打ち解ける人気者。</p>
+        </div>
+
+        <div class="member-card fade-up delay-4">
+          <a href="https://www.instagram.com/p/DVdSRKZE-T1/" target="_blank" rel="noopener" class="member-photo-link" aria-label="久米 直斗のInstagram投稿">
+            <div class="member-photo-wrap">
+              <img src="https://www.instagram.com/p/DVdSRKZE-T1/media/?size=m" alt="久米 直斗" class="member-photo" loading="lazy" onerror="this.style.display='none'">
+              <span class="member-sail">#87-58</span>
+            </div>
+          </a>
+          <span class="member-role role-player">新2回生</span>
+          <p class="member-name">久米 直斗</p>
+          <p class="member-name-en">KUME NAOTO</p>
+          <p class="member-dept">工学部・応用理工学科 / 福岡出身</p>
+          <p class="member-comment">福岡からはるばるやってきた同期イチ先輩ウケのいい男🔥 「今日俺めっちゃ成長したわ〜」が口癖。</p>
+        </div>
+
+        <!-- マネージャー -->
+        <div class="member-card fade-up delay-5">
+          <a href="https://www.instagram.com/p/DWWYwbwEz1W/" target="_blank" rel="noopener" class="member-photo-link" aria-label="マネージャーのInstagram投稿">
+            <div class="member-photo-wrap manager-wrap">
+              <div class="member-photo-icon" aria-hidden="true">⛵</div>
+            </div>
+          </a>
+          <span class="member-role role-manager">Manager × 2名</span>
+          <p class="member-name">マネージャー</p>
+          <p class="member-name-en">MANAGERS</p>
+          <p class="member-dept">全員が船舶免許取得済み</p>
+          <p class="member-comment">船の運転・動画撮影・ラウンディング運営など、海の上でチームを支えるプロフェッショナル。女子も大歓迎！</p>
+        </div>
+
       </div>
     </div>
   </section>
